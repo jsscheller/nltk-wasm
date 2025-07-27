@@ -1,0 +1,20 @@
+{
+  "name": "nltk-wasm",
+  "version": "0.1.0",
+  "description": "nltk compiled to WASM",
+  "type": "module",
+  "main": "index.js",
+  "types": "types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsscheller/nltk-wasm.git"
+  },
+  "bugs": "https://github.com/jsscheller/nltk-wasm/issues",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "adm-zip": "^0.5.16",
+    "esbuild": "^0.21.2",
+    "runish": "^0.1.0",
+    "typescript": "^5.3.3"
+  }
+}
