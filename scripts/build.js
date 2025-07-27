@@ -27,6 +27,31 @@ async function main() {
     target: "es2020",
     minify: !!RELEASE,
   });
+
+  if (!RELEASE) return;
+
+  await fs.rm(RELEASE_DIR, { force: true, recursive: true });
+  await fs.mkdir(RELEASE_DIR, { recursive: true });
+
+  const files = [
+    "out/*.pickle",
+    "out/*.whl",
+    "out/pyodide*",
+    "out/python_stdlib.zip",
+    "out/sqlite3-1.0.0.zip",
+    "out/types",
+    "out/index.js",
+    "package.json",
+    "README.md",
+    "LICENSE",
+  ];
+  for (const glob of files) {
+    for await (const filePath of fs.glob(glob)) {
+      await fs.cp(filePath, path.join(RELEASE_DIR, path.basename(filePath)), {
+        recursive: true,
+      });
+    }
+  }
 }
 
 main().catch((err) => {
